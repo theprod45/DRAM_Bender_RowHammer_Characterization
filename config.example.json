@@ -1,0 +1,100 @@
+{
+  "collector_binary": "./rowhammer_collector",
+  "output_root": "./dram_rowhammer_data",
+  "run": {
+    "run_id": "rowhammer_room_temp_001",
+    "operator": "",
+    "institution": ""
+  },
+  "board": {
+    "board_id": "ALVEO_U200_01",
+    "bitstream_file": "unknown",
+    "bitstream_sha256": "unknown"
+  },
+  "dimm": {
+    "dimm_id": "DIMM_001",
+    "manufacturer": "unknown",
+    "part_number": "unknown",
+    "serial_number": "unknown",
+    "module_type": "unknown",
+    "rank_count": "unknown",
+    "device_width": "unknown",
+    "banks_per_group": 4
+  },
+  "environment": {
+    "temperature_c": 22.0,
+    "temperature_source": "manual_room_temperature",
+    "voltage_vdd_v": 1.2,
+    "voltage_source": "manual"
+  },
+  "geometry": {
+    "cache_lines_per_row": 128,
+    "cache_line_bytes": 64,
+    "column_stride": 8
+  },
+  "timing": {
+    "nominal_trcd_slots": 9,
+    "nominal_trp_slots": 9,
+    "slot_ns_metadata": 1.5,
+    "write_spacing_slots": 7,
+    "read_spacing_slots": 7,
+    "write_recovery_slots": 8,
+    "read_to_precharge_slots": 8,
+    "final_guard_slots": 16,
+    "hammer_act_to_pre_cycles": 5,
+    "hammer_pre_to_act_cycles": 3,
+    "hammer_final_guard_cycles": 3,
+    "fabric_cycle_ns_metadata": 6.0
+  },
+  "experiment": {
+    "repetitions": 10,
+    "hammer_counts_per_row": [10000, 50000, 100000, 250000],
+    "refresh_enabled": true,
+    "verify_before_hammer": true,
+    "write_observations_csv": false,
+    "timeout_seconds_per_point": 3600,
+    "max_retries": 0
+  },
+  "pattern_cases": [
+    {
+      "case_id": "V00_AFF",
+      "victim_pattern": "00",
+      "aggressor_pattern": "FF"
+    },
+    {
+      "case_id": "VFF_A00",
+      "victim_pattern": "FF",
+      "aggressor_pattern": "00"
+    },
+    {
+      "case_id": "VAA_A55",
+      "victim_pattern": "AA",
+      "aggressor_pattern": "55"
+    },
+    {
+      "case_id": "V55_AAA",
+      "victim_pattern": "55",
+      "aggressor_pattern": "AA"
+    }
+  ],
+  "targets": [
+    {
+      "target_id": "DOUBLE_SIDED_ROW_1000",
+      "rank": 0,
+      "bank_group": 0,
+      "bank": 0,
+      "victim_rows": [1000],
+      "aggressor_rows": [999, 1001],
+      "notes": "Example only. Confirm row mapping and valid row range for the installed DIMM/bitstream."
+    },
+    {
+      "target_id": "SINGLE_SIDED_ROW_2000",
+      "rank": 0,
+      "bank_group": 0,
+      "bank": 0,
+      "victim_rows": [2000],
+      "aggressor_rows": [1999],
+      "notes": "Example single-sided target."
+    }
+  ]
+}
