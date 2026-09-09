@@ -47,7 +47,7 @@
     "fabric_cycle_ns_metadata": 6.0
   },
   "experiment": {
-    "repetitions": 10,
+    "repetitions": 20,
     "hammer_counts_per_row": [
       10000,
       50000,
